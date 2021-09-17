@@ -27,6 +27,11 @@ class MainWindow(qtw.QMainWindow):
         # Start application on connection options page
         self.connectionOptionsPage()
 
+        self.conn_error_box = qtw.QMessageBox()
+        self.conn_error_box.setIcon(qtw.QMessageBox.Critical)
+        self.conn_error_box.setText("ERROR:\n\nA connection could not be not established.")
+        self.conn_error_box.setWindowTitle("Connection Error")
+
         ################################################
         #                                              #
         #                    EVENTS                    #
@@ -45,8 +50,18 @@ class MainWindow(qtw.QMainWindow):
 
         ##### ----- SQL CONNECTION MANAGER PAGE ----- #####
 
+        global driver, server, user_name, password, database
+
         # Redirect to Data Connection Options page when cancel is clicked
         self.ui.sql_cancel_button.clicked.connect(self.connectionOptionsPage)
+        # Populate SQL Driver ComboBox with pyodbc drivers from main
+        self.ui.sql_driver_box.addItems(main.pyodbc_drivers)
+
+        self.ui.sql_test_connection_button.clicked.connect(self.testSQLConnection)
+        self.ui.sql_auth_button.clicked.connect(self.useSQLAuth)
+        self.ui.windows_auth_button.clicked.connect(self.useWindowsAuth)
+        self.ui.set_authentication_button.clicked.connect(self.updateDatabaseList)
+        
 
     ################################################
     #                                              #
@@ -62,12 +77,49 @@ class MainWindow(qtw.QMainWindow):
 
     # Function to switch over to Data Connection Options page
     def connectionOptionsPage(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.connection_page)
+        self.ui.main_pages.setCurrentWidget(self.ui.connection_page)
 
     # Function to switch over to SQL Connection Manager page
     def SQLConnectionPage(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.sql_page)
+        self.ui.main_pages.setCurrentWidget(self.ui.sql_page)
 
+    def useSQLAuth(self):
+        self.ui.user_name_label.setEnabled(True)
+        self.ui.user_name_input.setEnabled(True)
+        self.ui.password_label.setEnabled(True)
+        self.ui.password_input.setEnabled(True)
+
+    def useWindowsAuth(self):
+        self.ui.user_name_label.setDisabled(True)
+        self.ui.user_name_input.setDisabled(True)
+        self.ui.password_label.setDisabled(True)
+        self.ui.password_input.setDisabled(True)
+
+    def updateConnDetails(self):
+        global driver, server, user_name, password, database
+        driver = self.ui.sql_driver_box.currentText()
+        server = self.ui.server_name_input.text()
+        user_name = self.ui.user_name_input.text()
+        password = self.ui.password_input.text()
+        database = self.ui.database_name_input.currentText()
+
+    def testSQLConnection(self):
+        self.updateConnDetails()
+        if main.testConnection(driver, server, user_name, password, database):
+            return True
+        else:
+            return False
+
+    def updateDatabaseList(self):
+        self.updateConnDetails()
+        if (self.testSQLConnection):
+            self.ui.database_name_label.setEnabled(True)
+            self.ui.database_name_input.setEnabled(True)
+            databases = main.getDatabases(driver, server, user_name, password, database)
+            if databases:
+                self.ui.database_name_input.addItems(databases)
+        else:
+            self.conn_error_box.exec_()
 
 if __name__ == '__main__':
     app = qtw.QApplication([])

@@ -4,27 +4,83 @@ import time
 import threading
 import functions
 
+# Define a list of available pyodbc drivers
+pyodbc_drivers = pyodbc.drivers();
+
 # define server details
 driver = '{ODBC Driver 17 for SQL Server}'
 server = 'MSI'
 db = 'Closest_Neighbor'
 table = 'Lat_Longs'
 
-# connection string using the details above
-cnxn = pyodbc.connect(driver=driver, host=server, database=db, trusted_connection='yes')
-# create the connection cursor
-cursor = cnxn.cursor()
-# define our query
-query = '''SELECT * FROM ''' + table
-# run query
-cursor.execute(query)
-# get column names
-columns = [column[0] for column in cursor.description]
-# get data
-data = cursor.fetchall()
-# close the connection and remove the cursor
-cursor.close()
-cnxn.close()
+def isSQLAuth(user_name, password):
+    if (user_name.strip() or password.strip()):
+        return True
+    else:
+        return False
+
+def testConnection(driver, server, user_name, password, database):
+    conn = None
+    SQL_ATTR_CONNECTION_TIMEOUT = 113
+    login_timeout = 1
+    connection_timeout = 1
+    if isSQLAuth(user_name, password):
+        try:
+            conn = pyodbc.connect(driver=driver, host=server, uid=user_name, pwd=password, database=database, trusted_connection='no')
+            conn.close()
+            return True;
+        except:
+            return False;
+    else:
+        try:
+            conn = pyodbc.connect(driver=driver, host=server, database=database, trusted_connection='yes')
+            conn.close()
+            return True;
+        except:
+            return False;
+
+def getDatabases(driver, server, user_name, password, database):
+    try:
+        if isSQLAuth(user_name, password):
+                conn = pyodbc.connect(driver=driver, host=server, uid=user_name, pwd=password, database=database, trusted_connection='no')
+        else:
+            conn = pyodbc.connect(driver=driver, host=server, database=database, trusted_connection='yes')
+    except:
+        return []
+
+    cursor = conn.cursor()
+    query = '''SELECT name FROM sys.databases'''
+    cursor.execute(query)
+    data = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    
+    databases = []
+    for i in data:
+        if i[0] != "master" and i[0] != "msdb" and i[0] != "model" and i[0] != "Resource" and i[0] != "tempdb":
+            databases.append(i[0])
+
+    print(databases)
+    return databases;
+        
+
+
+
+# # connection string using the details above
+# cnxn = pyodbc.connect(driver=driver, host=server, database=db, trusted_connection='yes')
+# # create the connection cursor
+# cursor = cnxn.cursor()
+# # define our query
+# query = '''SELECT * FROM ''' + table
+# # run query
+# cursor.execute(query)
+# # get column names
+# columns = [column[0] for column in cursor.description]
+# # get data
+# data = cursor.fetchall()
+# # close the connection and remove the cursor
+# cursor.close()
+# cnxn.close()
 
 ########## Radius METHOD 1 ##########
 
