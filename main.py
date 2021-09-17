@@ -21,9 +21,6 @@ def isSQLAuth(user_name, password):
 
 def testConnection(driver, server, user_name, password, database):
     conn = None
-    SQL_ATTR_CONNECTION_TIMEOUT = 113
-    login_timeout = 1
-    connection_timeout = 1
     if isSQLAuth(user_name, password):
         try:
             conn = pyodbc.connect(driver=driver, host=server, uid=user_name, pwd=password, database=database, trusted_connection='no')
