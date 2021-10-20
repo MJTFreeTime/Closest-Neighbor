@@ -54,6 +54,9 @@ class MainWindow(qtw.QMainWindow):
 
         # Redirect to Data Connection Options page when cancel is clicked
         self.ui.sql_cancel_button.clicked.connect(self.connectionOptionsPage)
+        # Redirect to Table Mapping page when ok is clicked
+        self.ui.sql_ok_button.clicked.connect(self.tablePage)
+
         # Populate SQL Driver ComboBox with pyodbc drivers from main
         self.ui.sql_driver_box.addItems(main.pyodbc_drivers)
 
@@ -62,6 +65,10 @@ class MainWindow(qtw.QMainWindow):
         self.ui.windows_auth_button.clicked.connect(self.useWindowsAuth)
         self.ui.set_authentication_button.clicked.connect(self.updateDatabaseList)
         
+        ##### ----- CALCULATION PAGE ----- #####
+        # Redirect to SQL Connection Manager page when cancel is clicked
+        self.ui.table_cancel_button.clicked.connect(self.SQLConnectionPage)
+
 
     ################################################
     #                                              #
@@ -82,6 +89,10 @@ class MainWindow(qtw.QMainWindow):
     # Function to switch over to SQL Connection Manager page
     def SQLConnectionPage(self):
         self.ui.main_pages.setCurrentWidget(self.ui.sql_page)
+
+    # Function to switch over to Calculation page
+    def tablePage(self):
+        self.ui.main_pages.setCurrentWidget(self.ui.table_page)
 
     def useSQLAuth(self):
         self.ui.user_name_label.setEnabled(True)

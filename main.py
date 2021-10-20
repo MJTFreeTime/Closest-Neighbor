@@ -49,8 +49,8 @@ def getDatabases(driver, server, user_name, password, database):
     query = '''SELECT name FROM sys.databases'''
     cursor.execute(query)
     data = cursor.fetchall()
-    cursor.close()
-    conn.close()
+    #cursor.close()
+    #conn.close()
     
     databases = []
     for i in data:
@@ -58,6 +58,12 @@ def getDatabases(driver, server, user_name, password, database):
             databases.append(i[0])
 
     print(databases)
+    query = '''SELECT * FROM Closest_Neighbor.INFORMATION_SCHEMA.TABLES;'''
+    cursor.execute(query)
+    data = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    print(data)
     return databases;
         
 
