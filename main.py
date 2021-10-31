@@ -49,24 +49,37 @@ def getDatabases(driver, server, user_name, password, database):
     query = '''SELECT name FROM sys.databases'''
     cursor.execute(query)
     data = cursor.fetchall()
-    #cursor.close()
-    #conn.close()
+    cursor.close()
+    conn.close()
     
     databases = []
     for i in data:
         if i[0] != "master" and i[0] != "msdb" and i[0] != "model" and i[0] != "Resource" and i[0] != "tempdb":
             databases.append(i[0])
 
-    print(databases)
-    query = '''SELECT * FROM Closest_Neighbor.INFORMATION_SCHEMA.TABLES;'''
+    return databases;
+        
+def getTables(driver, server, user_name, password, database):
+    try:
+        if isSQLAuth(user_name, password):
+                conn = pyodbc.connect(driver=driver, host=server, uid=user_name, pwd=password, database=database, trusted_connection='no')
+        else:
+            conn = pyodbc.connect(driver=driver, host=server, database=database, trusted_connection='yes')
+    except:
+        return []
+
+    cursor = conn.cursor()
+    query = f'''SELECT * FROM {database}.sys.tables'''
     cursor.execute(query)
     data = cursor.fetchall()
     cursor.close()
     conn.close()
-    print(data)
-    return databases;
-        
 
+    tables = []
+    for i in data:
+        tables.append(i[0])
+
+    return tables;
 
 
 # # connection string using the details above

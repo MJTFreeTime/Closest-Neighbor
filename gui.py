@@ -64,6 +64,7 @@ class MainWindow(qtw.QMainWindow):
         self.ui.sql_auth_button.clicked.connect(self.useSQLAuth)
         self.ui.windows_auth_button.clicked.connect(self.useWindowsAuth)
         self.ui.set_authentication_button.clicked.connect(self.updateDatabaseList)
+        self.ui.sql_ok_button.clicked.connect(self.updateTableList)
         
         ##### ----- CALCULATION PAGE ----- #####
         # Redirect to SQL Connection Manager page when cancel is clicked
@@ -128,9 +129,21 @@ class MainWindow(qtw.QMainWindow):
             self.ui.database_name_input.setEnabled(True)
             databases = main.getDatabases(driver, server, user_name, password, database)
             if databases:
+                self.ui.database_name_input.clear()
                 self.ui.database_name_input.addItems(databases)
         else:
             self.conn_error_box.exec_()
+
+    def updateTableList(self):
+        self.updateConnDetails()
+        if (self.testSQLConnection):
+            tables = main.getTables(driver, server, user_name, password, database)
+            if tables:
+                self.ui.sql_table_box.clear()
+                self.ui.sql_table_box.addItems(tables)
+        else:
+            self.conn_error_box.exec_()
+        
 
 if __name__ == '__main__':
     app = qtw.QApplication([])
