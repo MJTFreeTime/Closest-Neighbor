@@ -12,3 +12,13 @@ The expected data within a table will be expected to *at least* include the foll
 - **Longitude** *(Longitude values, stored in decimal-degree format; e.g. 163.26327125)*
 
 ***Note: The GUI is currently in-progress.***
+
+**Images:**
+
+![image](https://user-images.githubusercontent.com/65698531/151044560-fd8a6bb5-e334-4acc-9e3a-07e94da0294b.png)
+
+Above is the custom "connection manager" I am working on for this software.
+
+![image](https://user-images.githubusercontent.com/65698531/151044700-9078896e-d147-42d3-bd45-50afce05f6be.png)
+
+SQL Drivers are dynamically pulled in using pyodbc, allowing for a smoother experience when connecting to your database.
