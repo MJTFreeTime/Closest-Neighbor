@@ -21,4 +21,4 @@ Above is the custom "connection manager" I am working on for this software.
 
 ![image](https://user-images.githubusercontent.com/65698531/151044700-9078896e-d147-42d3-bd45-50afce05f6be.png)
 
-SQL Drivers are dynamically pulled in using pyodbc, allowing for a smoother experience when connecting to your database.
+Your installed SQL Drivers are dynamically pulled in from your system using pyodbc, allowing for a smoother experience when connecting to your database.
