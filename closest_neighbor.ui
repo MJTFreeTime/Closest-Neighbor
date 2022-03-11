@@ -33,7 +33,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="connection_page">
      <property name="mouseTracking">
@@ -410,7 +410,7 @@
      <widget class="QPushButton" name="table_cancel_button">
       <property name="geometry">
        <rect>
-        <x>680</x>
+        <x>560</x>
         <y>510</y>
         <width>101</width>
         <height>31</height>
@@ -440,7 +440,7 @@
        </font>
       </property>
       <property name="text">
-       <string>SQL Table Details</string>
+       <string>SQL Table Mapping</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -475,7 +475,7 @@
         <x>250</x>
         <y>250</y>
         <width>291</width>
-        <height>161</height>
+        <height>211</height>
        </rect>
       </property>
       <property name="title">
@@ -485,7 +485,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>50</y>
+         <y>100</y>
          <width>251</width>
          <height>22</height>
         </rect>
@@ -495,7 +495,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>30</y>
+         <y>80</y>
          <width>211</width>
          <height>16</height>
         </rect>
@@ -508,7 +508,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>110</y>
+         <y>160</y>
          <width>251</width>
          <height>22</height>
         </rect>
@@ -518,7 +518,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>90</y>
+         <y>140</y>
          <width>211</width>
          <height>16</height>
         </rect>
@@ -527,6 +527,251 @@
         <string>Longitude Column Name:</string>
        </property>
       </widget>
+      <widget class="QComboBox" name="uid_column_box">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>50</y>
+         <width>251</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>211</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>UID Column Name:</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="table_ok_button">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>510</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>OK</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="calculation_page">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>170</y>
+        <width>591</width>
+        <height>191</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="in_radius_page">
+       <widget class="QGroupBox" name="in_radius_settings">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>551</width>
+          <height>141</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>In-Radius Calculation Settings</string>
+        </property>
+        <widget class="QLineEdit" name="lineEdit_3">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>40</y>
+           <width>191</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_7">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>40</y>
+           <width>81</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Central Point ID:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_4">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>80</y>
+           <width>191</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_8">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>80</y>
+           <width>81</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Radius (in miles):</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="closest_neighbor_page">
+       <widget class="QGroupBox" name="closest_neighbor_settings">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>551</width>
+          <height>141</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Closest-Neighbor Calculation Settings</string>
+        </property>
+        <widget class="QLineEdit" name="lineEdit">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>40</y>
+           <width>191</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>40</y>
+           <width>81</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Central Point ID:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_5">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>80</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>No. of Neighbors:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_2">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>80</y>
+           <width>191</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="sql_table_label_2">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>40</y>
+        <width>211</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Output Settings</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>380</y>
+        <width>551</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Output Destination</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>120</y>
+        <width>47</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Method:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>140</y>
+        <width>201</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>In-Radius</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Closest-Neighbor</string>
+       </property>
+      </item>
      </widget>
     </widget>
    </widget>

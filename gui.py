@@ -165,12 +165,14 @@ class MainWindow(qtw.QMainWindow):
 
 		columns = main.getColumns(connString, table)
 
+		self.ui.uid_column_box.clear()
 		self.ui.latitude_column_box.clear()
 		self.ui.longitude_column_box.clear()
 
 		if columns == 1:
 			self.conn_error_box.exec()
 		else:
+			self.ui.uid_column_box.addItems(columns)
 			self.ui.latitude_column_box.addItems(columns)
 			self.ui.longitude_column_box.addItems(columns)
 			

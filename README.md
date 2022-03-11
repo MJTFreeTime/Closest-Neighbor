@@ -7,7 +7,6 @@ At the moment, the algorithms I've been working on do one of the following:
 - Find all points within a given radius *r* around a specific point from the table
 
 The expected data within a table will be expected to *at least* include the following columns (names arbitrary, but to be specified when using tool):
-- **ID** *(A unique identifier column)*
 - **Latitude** *(Latitude values, stored in decimal-degree format; e.g. -76.12622376)*
 - **Longitude** *(Longitude values, stored in decimal-degree format; e.g. 163.26327125)*
 
