@@ -51,9 +51,8 @@ class MainWindow(qtw.QMainWindow):
 
 		##### ----- SQL CONNECTION MANAGER PAGE ----- #####
 
-		global connString, driver, server, user_name, password, database, table, timeout
+		global connString, driver, server, user_name, password, database, table
 		connString = driver = server = user_name = password = database = table = False
-		timeout = 1
 
 		# Redirect to Data Connection Options page when cancel is clicked
 		self.ui.sql_cancel_button.clicked.connect(self.connectionOptionsPage)
@@ -62,7 +61,7 @@ class MainWindow(qtw.QMainWindow):
 
 		# Populate SQL Driver ComboBox with pyodbc drivers from main
 		self.ui.sql_driver_box.addItems(main.pyodbc_drivers)
-		
+
 		self.ui.sql_auth_button.clicked.connect(self.useSQLAuth)
 		self.ui.windows_auth_button.clicked.connect(self.useWindowsAuth)
 		self.ui.set_authentication_button.clicked.connect(self.updateDatabaseList)
@@ -111,7 +110,7 @@ class MainWindow(qtw.QMainWindow):
 		self.ui.password_input.setDisabled(True)
 
 	def updateConnDetails(self):
-		global connString, driver, server, user_name, password, database, table, timeout
+		global connString, driver, server, user_name, password, database, table
 
 		driver = self.ui.sql_driver_box.currentText()
 		server = self.ui.server_name_input.text()
@@ -121,14 +120,14 @@ class MainWindow(qtw.QMainWindow):
 		table = self.ui.sql_table_box.currentText()
 
 		# Only update connection string variable if all NECESSARY variables are defined (are not False)
-		if (driver and server and timeout):
+		if (driver and server):
 			if (user_name or password):
 				connString = "DRIVER={" + driver + "};" + "SERVER=" + server + ";DATABASE=" + database + ";UID=" + user_name + ";PWD=" + password + ";TRUSTED_CONNECTION=no"
 			else:
 				connString = "DRIVER={" + driver + "};" + "SERVER=" + server + ";DATABASE=" + database + ";TRUSTED_CONNECTION=yes"
 
 	def testSQLConnection(self):
-		if (main.testConnection(connString, timeout)):
+		if (main.testConnection(connString)):
 			return True
 		else:
 			self.conn_error_box.exec()
@@ -137,7 +136,7 @@ class MainWindow(qtw.QMainWindow):
 	def updateDatabaseList(self):
 		self.updateConnDetails()
 
-		databases = main.getDatabases(connString, timeout)
+		databases = main.getDatabases(connString)
 		self.ui.database_name_input.clear()
 
 		if databases == 1:
@@ -152,7 +151,7 @@ class MainWindow(qtw.QMainWindow):
 	def updateTableList(self):
 		self.updateConnDetails()
 
-		tables = main.getTables(connString, database, timeout)
+		tables = main.getTables(connString, database)
 
 		self.ui.sql_table_box.clear()
 
@@ -164,16 +163,14 @@ class MainWindow(qtw.QMainWindow):
 	def updateColumnList(self):
 		self.updateConnDetails()
 
-		columns = main.getColumns(connString, table, timeout)
+		columns = main.getColumns(connString, table)
 
-		self.ui.uid_column_box.clear()
 		self.ui.latitude_column_box.clear()
 		self.ui.longitude_column_box.clear()
 
 		if columns == 1:
 			self.conn_error_box.exec()
 		else:
-			self.ui.uid_column_box.addItems(columns)
 			self.ui.latitude_column_box.addItems(columns)
 			self.ui.longitude_column_box.addItems(columns)
 			

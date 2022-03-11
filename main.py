@@ -12,19 +12,24 @@ server = 'MSI'
 db = 'Closest_Neighbor'
 table = 'Lat_Longs'
 
-def testConnection(connString, timeout):
+# pyodbc extra details
+SQL_ATTR_CONNECTION_TIMEOUT = 113
+connection_timeout = 1
+timeout = 1
+
+def testConnection(connString):
 	try:
-		conn = pyodbc.connect(connString, timeout=timeout)
+		conn = pyodbc.connect(connString, timeout=timeout, attrs_before={SQL_ATTR_CONNECTION_TIMEOUT: connection_timeout})
 		conn.close()
 		return True
 	except:
 		return False
 
-def getDatabases(connString, timeout):
-	if (not testConnection(connString, timeout=timeout)):
+def getDatabases(connString):
+	if (not testConnection(connString)):
 		return 1
 
-	conn = pyodbc.connect(connString, timeout=timeout)
+	conn = pyodbc.connect(connString, attrs_before={SQL_ATTR_CONNECTION_TIMEOUT: connection_timeout})
 	cursor = conn.cursor()
 	query = '''SELECT name FROM sys.databases'''
 	cursor.execute(query)
@@ -40,11 +45,11 @@ def getDatabases(connString, timeout):
 
 	return databases;
 		
-def getTables(connString, database, timeout):
-	if (not testConnection(connString, timeout)):
+def getTables(connString, database):
+	if (not testConnection(connString)):
 		return 1
 
-	conn = pyodbc.connect(connString, timeout=timeout)
+	conn = pyodbc.connect(connString, timeout=timeout, attrs_before={SQL_ATTR_CONNECTION_TIMEOUT: connection_timeout})
 	cursor = conn.cursor()
 	query = f'''SELECT * FROM {database}.sys.tables'''
 	cursor.execute(query)
@@ -58,11 +63,11 @@ def getTables(connString, database, timeout):
 
 	return tables;
 
-def getColumns(connString, table, timeout):
-	if (not testConnection(connString, timeout)):
+def getColumns(connString, table):
+	if (not testConnection(connString)):
 		return 1
 	
-	conn = pyodbc.connect(connString, timeout=timeout)
+	conn = pyodbc.connect(connString, timeout=timeout, attrs_before={SQL_ATTR_CONNECTION_TIMEOUT: connection_timeout})
 	cursor = conn.cursor()
 	query = f'''SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = \'{table}\''''
 	cursor.execute(query)
