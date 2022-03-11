@@ -51,6 +51,7 @@
       <property name="font">
        <font>
         <pointsize>16</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -73,6 +74,7 @@
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -98,6 +100,7 @@
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -131,6 +134,7 @@
       <property name="font">
        <font>
         <pointsize>16</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -372,19 +376,6 @@
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="sql_test_connection_button">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>510</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Test Connection</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="sql_ok_button">
       <property name="geometry">
        <rect>
@@ -444,6 +435,7 @@
       <property name="font">
        <font>
         <pointsize>16</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -502,7 +494,7 @@
         <string>Unique-Identifier (UID) Column Name:</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="uid_column_box">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -512,7 +504,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_2">
+      <widget class="QComboBox" name="latitude_column_box">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -532,10 +524,10 @@
         </rect>
        </property>
        <property name="text">
-        <string>Latidude Column Name:</string>
+        <string>Latitude Column Name:</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_3">
+      <widget class="QComboBox" name="longitude_column_box">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -568,7 +560,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAbout">
@@ -598,7 +590,6 @@
   <tabstop>password_input</tabstop>
   <tabstop>set_authentication_button</tabstop>
   <tabstop>database_name_input</tabstop>
-  <tabstop>sql_test_connection_button</tabstop>
   <tabstop>sql_cancel_button</tabstop>
   <tabstop>sql_ok_button</tabstop>
   <tabstop>csv_option_button</tabstop>
