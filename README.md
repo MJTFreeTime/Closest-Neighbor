@@ -14,10 +14,8 @@ The expected data within a table will be expected to *at least* include the foll
 
 **Images:**
 
-![image](https://user-images.githubusercontent.com/65698531/151044560-fd8a6bb5-e334-4acc-9e3a-07e94da0294b.png)
+![image](https://user-images.githubusercontent.com/65698531/157993408-64d1fa02-5cfc-4943-8159-321d4d693d58.png)
 
-Above is the custom "connection manager" I am working on for this software.
+![image](https://user-images.githubusercontent.com/65698531/157994679-96bd30a8-6c90-471c-847f-58231a180bc4.png)
 
-![image](https://user-images.githubusercontent.com/65698531/151044700-9078896e-d147-42d3-bd45-50afce05f6be.png)
-
-Your installed SQL Drivers are dynamically pulled in from your system using pyodbc, allowing for a smoother experience when connecting to your database.
+![image](https://user-images.githubusercontent.com/65698531/157994701-c9f26acd-9229-4fdc-9f7b-cceaad7bc9f5.png)
