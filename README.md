@@ -9,6 +9,7 @@ At the moment, the algorithms I've been working on do one of the following:
 The expected data within a table will be expected to *at least* include the following columns (names arbitrary, but to be specified when using tool):
 - **Latitude** *(Latitude values, stored in decimal-degree format; e.g. -76.12622376)*
 - **Longitude** *(Longitude values, stored in decimal-degree format; e.g. 163.26327125)*
+- **Longitude** *(Longitude values, stored in decimal-degree format; e.g. 163.26327125)*
 
 ***Note: The GUI is currently in-progress.***
 
