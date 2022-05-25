@@ -569,7 +569,7 @@
      </widget>
     </widget>
     <widget class="QWidget" name="calculation_page">
-     <widget class="QStackedWidget" name="stackedWidget">
+     <widget class="QStackedWidget" name="calculation_tab">
       <property name="geometry">
        <rect>
         <x>100</x>
@@ -579,14 +579,14 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="in_radius_page">
        <widget class="QGroupBox" name="in_radius_settings">
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>40</y>
+          <y>10</y>
           <width>551</width>
           <height>141</height>
          </rect>
@@ -594,7 +594,7 @@
         <property name="title">
          <string>In-Radius Calculation Settings</string>
         </property>
-        <widget class="QLineEdit" name="lineEdit_3">
+        <widget class="QLineEdit" name="rad_point_id_box">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -617,7 +617,7 @@
           <string>Central Point ID:</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_4">
+        <widget class="QLineEdit" name="radius_box">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -655,7 +655,7 @@
         <property name="title">
          <string>Closest-Neighbor Calculation Settings</string>
         </property>
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="cn_point_id_box">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -691,7 +691,7 @@
           <string>No. of Neighbors:</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_2">
+        <widget class="QLineEdit" name="neighbor_num_box">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -727,7 +727,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QGroupBox" name="groupBox_2">
+     <widget class="QGroupBox" name="output_dest_tab">
       <property name="geometry">
        <rect>
         <x>120</x>
@@ -739,7 +739,7 @@
       <property name="title">
        <string>Output Destination</string>
       </property>
-      <widget class="QLabel" name="label_9">
+      <widget class="QLabel" name="output_dest_box">
        <property name="geometry">
         <rect>
          <x>30</x>
@@ -761,7 +761,7 @@
         <string/>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="output_dest_button">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -774,7 +774,7 @@
         <string>...</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="output_go_button">
        <property name="geometry">
         <rect>
          <x>400</x>
@@ -801,7 +801,7 @@
        <string>Method:</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="calculation_method">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -809,6 +809,9 @@
         <width>201</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="currentText">
+       <string>In-Radius</string>
       </property>
       <item>
        <property name="text">

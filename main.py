@@ -17,6 +17,8 @@ SQL_ATTR_CONNECTION_TIMEOUT = 113
 connection_timeout = 1
 timeout = 1
 
+global data
+
 def testConnection(connString):
 	try:
 		conn = pyodbc.connect(connString, timeout=timeout, attrs_before={SQL_ATTR_CONNECTION_TIMEOUT: connection_timeout})
@@ -81,21 +83,26 @@ def getColumns(connString, table):
 	
 	return columns
 
-# # connection string using the details above
-# cnxn = pyodbc.connect(driver=driver, host=server, database=db, trusted_connection='yes')
-# # create the connection cursor
-# cursor = cnxn.cursor()
-# # define our query
-# query = '''SELECT * FROM ''' + table
-# # run query
-# cursor.execute(query)
-# # get column names
-# columns = [column[0] for column in cursor.description]
-# # get data
-# data = cursor.fetchall()
-# # close the connection and remove the cursor
-# cursor.close()
-# cnxn.close()
+def selectAllData(connString, table):
+	global data
+	# connection string using the details above
+	conn = pyodbc.connect(connString, timeout=timeout, attrs_before={SQL_ATTR_CONNECTION_TIMEOUT: connection_timeout})
+	# create the connection cursor
+	cursor = conn.cursor()
+	# define our query
+	query = '''SELECT * FROM ''' + table
+	# run query
+	cursor.execute(query)
+	# get column names
+	columns = [column[0] for column in cursor.description]
+	# get data
+	data = cursor.fetchall()
+	# close the connection and remove the cursor
+	cursor.close()
+	conn.close()
+
+	print(data)
+	return data
 
 ########## Radius METHOD 1 ##########
 

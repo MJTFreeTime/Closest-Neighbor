@@ -1,4 +1,3 @@
-import time
 from closest_neighbor import Ui_MainWindow
 import main
 
@@ -68,9 +67,19 @@ class MainWindow(qtw.QMainWindow):
 		self.ui.sql_ok_button.clicked.connect(self.updateTableList)
 
 		##### ----- TABLE MAPPING PAGE ----- #####
+
+		global uidCol, latCol, longCol
+		uidCol = latCol = longCol = False
+
 		# Redirect to SQL Connection Manager page when cancel is clicked
 		self.ui.table_cancel_button.clicked.connect(self.SQLConnectionPage)
 		self.ui.sql_table_box.currentIndexChanged.connect(self.updateColumnList)
+		self.ui.table_ok_button.clicked.connect(self.calculationPage)
+
+		##### ----- CALCULATION PAGE ----- #####
+		self.ui.calculation_method.currentIndexChanged.connect(self.changeCalculationTab)
+		self.ui.output_dest_button.clicked.connect(self.setOutputDestination)
+		self.ui.output_go_button.clicked.connect(self.queueCalculation)
 
 
 	################################################
@@ -176,7 +185,34 @@ class MainWindow(qtw.QMainWindow):
 			self.ui.latitude_column_box.addItems(columns)
 			self.ui.longitude_column_box.addItems(columns)
 			
-		
+	##### ----- CALCULATION PAGE ----- #####
+
+	def calculationPage(self):
+		self.ui.main_pages.setCurrentWidget(self.ui.calculation_page)
+
+	def changeCalculationTab(self):
+		self.ui.calculation_tab.setCurrentIndex(self.ui.calculation_method.currentIndex())
+
+	def setOutputDestination(self):
+		directory = str(qtw.QFileDialog.getExistingDirectory(self, "Select Directory"))
+		self.ui.output_dest_box.setText(directory)
+
+	def queueCalculation(self):
+		directory = self.ui.output_dest_box.text()
+		calcType = self.ui.calculation_method.currentText()
+		if (calcType == "In-Radius"):
+			pointID = int(self.ui.rad_point_id_box.text())
+			radius = int(self.ui.radius_box.text())
+
+			main.selectAllData(connString, table)
+			main.inRadius(pointID, radius, directory)
+		elif (calcType == "Closest-Neighbor"):
+			pointID = int(self.ui.cn_point_id_box.text())
+			radius = int(self.ui.neighbor_num_box.text())
+			# main.closestNeighbor(point)
+
+
+
 
 if __name__ == '__main__':
 	app = qtw.QApplication([])
