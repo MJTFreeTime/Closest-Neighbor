@@ -201,9 +201,6 @@ def inRadius(pointID, radius, fileDestination):
 results = []
 
 def withinBounds(pointID, radius):
-	global data
-	global results
-
 	results = []
 
 	centralPoint = functions.linearSearch(pointID, data)
@@ -222,10 +219,7 @@ def withinBounds(pointID, radius):
 
 	return 0
 
-def closestNeighbor(pointID, neighbors):
-	global data
-	global results
-
+def closestNeighbor(pointID, neighbors, fileDestination):
 	t0 = time.time()
 
 	results = []
@@ -261,8 +255,8 @@ def closestNeighbor(pointID, neighbors):
 	t1 = time.time()
 
 	print("Time:", t1 - t0)
-
-	f = open("output.csv", "x")
+	print(fileDestination + "/output.csv")
+	f = open((fileDestination + "/output.csv"), "x")
 
 	f.write("ID1,ID1_Lat,ID1_Long,ID2,ID2_Lat,ID2_Long,Distance\n")
 

@@ -200,16 +200,17 @@ class MainWindow(qtw.QMainWindow):
 	def queueCalculation(self):
 		directory = self.ui.output_dest_box.text()
 		calcType = self.ui.calculation_method.currentText()
+		main.selectAllData(connString, table)
 		if (calcType == "In-Radius"):
 			pointID = int(self.ui.rad_point_id_box.text())
 			radius = int(self.ui.radius_box.text())
 
-			main.selectAllData(connString, table)
 			main.inRadius(pointID, radius, directory)
 		elif (calcType == "Closest-Neighbor"):
 			pointID = int(self.ui.cn_point_id_box.text())
-			radius = int(self.ui.neighbor_num_box.text())
-			# main.closestNeighbor(point)
+			neighborN = int(self.ui.neighbor_num_box.text())
+
+			main.closestNeighbor(pointID, neighborN, directory)
 
 
 
