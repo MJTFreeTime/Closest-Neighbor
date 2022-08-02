@@ -1,5 +1,13 @@
-from closest_neighbor import Ui_MainWindow
-import main
+import os
+import sys
+
+# Fixes importing between directories; sort of makes this the "absolute path" for python files
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+
+from pyqt_generated.closest_neighbor import Ui_MainWindow
+import calculation.main as main
+
+sys.path.pop(0)
 
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
@@ -205,15 +213,12 @@ class MainWindow(qtw.QMainWindow):
 			pointID = int(self.ui.rad_point_id_box.text())
 			radius = int(self.ui.radius_box.text())
 
-			main.inRadius(pointID, radius, directory)
+			main.inRadius(pointID, radius, True, directory)
 		elif (calcType == "Closest-Neighbor"):
 			pointID = int(self.ui.cn_point_id_box.text())
 			neighborN = int(self.ui.neighbor_num_box.text())
 
 			main.closestNeighbor(pointID, neighborN, directory)
-
-
-
 
 if __name__ == '__main__':
 	app = qtw.QApplication([])
