@@ -21,4 +21,4 @@ The expected data within a table will be expected to *at least* include the foll
 
 ![image](https://user-images.githubusercontent.com/65698531/157994701-c9f26acd-9229-4fdc-9f7b-cceaad7bc9f5.png)
 
-![image](https://user-images.githubusercontent.com/65698531/182281747-c011c4e2-aa83-48e4-bdb7-a2797f957588.png)
+![image](https://user-images.githubusercontent.com/65698531/183267919-923f1f92-91cd-4575-8549-e1b956176dde.png)
