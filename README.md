@@ -11,6 +11,7 @@ The expected data within a table will be expected to *at least* include the foll
 - **Latitude** *(Latitude values, stored in decimal-degree format; e.g. -76.12622376)*
 - **Longitude** *(Longitude values, stored in decimal-degree format; e.g. 163.26327125)*
 
+
 **Images:**
 
 ![image](https://user-images.githubusercontent.com/65698531/157993408-64d1fa02-5cfc-4943-8159-321d4d693d58.png)
